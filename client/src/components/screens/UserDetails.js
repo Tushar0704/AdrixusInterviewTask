@@ -8,7 +8,8 @@ const UserDetails = ({ users, searchTerm }) => {
                 users.filter((user) => {
                     if(searchTerm === ""){
                         return user
-                    } else if ( (user.firstname.toLowerCase().includes(searchTerm.toLowerCase())) || (user.lastname.toLowerCase().includes(searchTerm.toLowerCase())) || (user.age.toString().toLowerCase().includes(searchTerm.toLowerCase())) ){
+                    }
+                    else if ( (user.firstname.toLowerCase().includes(searchTerm.toLowerCase())) || (user.lastname.toLowerCase().includes(searchTerm.toLowerCase())) || (user.age.toString().toLowerCase().includes(searchTerm.toLowerCase())) ){
                         return user
                     }
                 }).map(user => (

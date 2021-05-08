@@ -2,7 +2,7 @@ import axios from 'axios';
 import Pagination from './Pagination';
 import UserDetails from './UserDetails';
 import React, {useState, useEffect } from 'react';  
-import { Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
+import { Form, FormControl, Nav, Navbar } from 'react-bootstrap';
 
 const PrivateScreen = ({ history }) => {
     const [users, setUsers] = useState([]);
@@ -64,21 +64,21 @@ const PrivateScreen = ({ history }) => {
         ) :( 
             <>
                 <div className='container mt-5'>
-                <Navbar bg="light" variant="light" expand="lg" className="mb-5">
-                    <Navbar.Brand href="/"> INTERNSHIP-TASK </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
-                            <Nav.Link href="/" > HOME </Nav.Link>
-                            <Nav.Link href="/" onClick={logoutHandler} style={{color: "red"}}> LOGOUT </Nav.Link>
-                        </Nav>
-                        <Form inline>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={event => {setSearchTerm(event.target.value)}}/>
-                        </Form>
-                    </Navbar.Collapse>
-                </Navbar>
+                    <Navbar bg="light" variant="light" expand="lg" className="mb-5">
+                        <Navbar.Brand href="/"> INTERNSHIP-TASK </Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="mr-auto">
+                                <Nav.Link href="/" > HOME </Nav.Link>
+                                <Nav.Link href="/" onClick={logoutHandler} style={{color: "red"}}> LOGOUT </Nav.Link>
+                            </Nav>
+                            <Form inline>
+                                <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={event => {setSearchTerm(event.target.value)}}/>
+                            </Form>
+                        </Navbar.Collapse>
+                    </Navbar>
                     <UserDetails users={currentUsers} searchTerm={searchTerm} />
-                    <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate}/>
+                    <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate} currentPage={currentPage}/>
                 </div>
             </>
         )
