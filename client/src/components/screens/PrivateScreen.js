@@ -65,7 +65,7 @@ const PrivateScreen = ({ history }) => {
             <>
                 <div className='container mt-5'>
                     <Navbar bg="light" variant="light" expand="lg" className="mb-5">
-                        <Navbar.Brand href="/"> INTERNSHIP-TASK </Navbar.Brand>
+                        {/*<Navbar.Brand href="/"> INTERNSHIP-TASK </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
@@ -75,7 +75,31 @@ const PrivateScreen = ({ history }) => {
                             <Form inline>
                                 <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={event => {setSearchTerm(event.target.value)}}/>
                             </Form>
-                        </Navbar.Collapse>
+                        </Navbar.Collapse>*/}
+                        <div className="d-inline-flex justify-content-start">
+                            <div>
+                                <Navbar.Brand href="/"> INTERNSHIP-TASK </Navbar.Brand>
+                            </div>
+                            <div className="d-inline-flex justify-content-between">
+                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                                <Navbar.Collapse id="basic-navbar-nav">
+                                    <div className="d-inline-flex pl-4">
+                                        <Nav className="mr-auto">
+                                            <Nav.Link href="/" > HOME </Nav.Link>
+                                        </Nav>
+                                        <Form inline>
+                                            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={event => {setSearchTerm(event.target.value)}} style={{width:"60vw"}}/>
+                                        </Form>
+                                    </div>
+                                </Navbar.Collapse>
+                            </div>
+                            <div>
+                                    <Nav className="mr-auto">
+                                    <Nav.Link href="/" onClick={logoutHandler} style={{color: "red", paddingLeft: "60%"}}> LOGOUT </Nav.Link>
+                                </Nav>
+                            </div>
+                        </div>
+
                     </Navbar>
                     <UserDetails users={currentUsers} searchTerm={searchTerm} />
                     <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate} currentPage={currentPage}/>
