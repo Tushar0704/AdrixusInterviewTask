@@ -12,7 +12,7 @@ const LoginScreen = ({ history }) => {
 
     useEffect(() => {
         if(localStorage.getItem("authToken")) {
-            history.push(`/home/!#`);
+            history.push(`/`);
         }
     }, [history]);
 
@@ -33,7 +33,7 @@ const LoginScreen = ({ history }) => {
             //console.log(data.token);
 
             setLoading(false);
-            history.push(`/home/!#`);
+            history.push(`/`);
         } catch (error) {
             setError(error.response.data.error);
             setTimeout(() => {

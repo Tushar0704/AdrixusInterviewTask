@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from 'react';
-import Navbar from './Navbar';  
+import Navbar from './Navbar';
+import NavbarScreen from './NavbarScreen';  
 import UserDetails from './UserDetails';
 import Pagination from './Pagination';
 import axios from 'axios';
@@ -26,7 +27,7 @@ const PrivateScreen = ({ history }) => {
 
             try {
                 setLoading(true);
-                const {data} = await axios.get("/api/private/home", config);
+                const {data} = await axios.get("/api/private", config);
                 setUsers(data.data);
             } catch (error) {
                 localStorage.removeItem("authToken");
@@ -57,7 +58,7 @@ const PrivateScreen = ({ history }) => {
         ) :( 
             <>
                 <div className='container mt-5'>
-                    <Navbar/>
+                    <NavbarScreen/>
                     <UserDetails users={currentUsers} />
                     <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate}/>
                 </div>
