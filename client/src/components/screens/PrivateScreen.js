@@ -1,9 +1,8 @@
-import React, {useState, useEffect } from 'react';
-import Navbar from './Navbar';
-import NavbarScreen from './NavbarScreen';  
-import UserDetails from './UserDetails';
-import Pagination from './Pagination';
 import axios from 'axios';
+import Pagination from './Pagination';
+import UserDetails from './UserDetails';
+import React, {useState, useEffect } from 'react';  
+import { Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
 
 const PrivateScreen = ({ history }) => {
     const [users, setUsers] = useState([]);
@@ -11,6 +10,7 @@ const PrivateScreen = ({ history }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(10);
     const [error, setError] = useState("");
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         if(!localStorage.getItem("authToken")){
@@ -39,6 +39,12 @@ const PrivateScreen = ({ history }) => {
         fetchPrivateData();
     }, [history]);
 
+    const logoutHandler = () => {
+        localStorage.clear();
+        localStorage.removeItem("authToken");
+        history.push('/login');
+    }
+
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -58,8 +64,20 @@ const PrivateScreen = ({ history }) => {
         ) :( 
             <>
                 <div className='container mt-5'>
-                    <NavbarScreen/>
-                    <UserDetails users={currentUsers} />
+                <Navbar bg="light" variant="light" expand="lg" className="mb-5">
+                    <Navbar.Brand href="/"> INTERNSHIP-TASK </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="mr-auto">
+                            <Nav.Link href="/" > HOME </Nav.Link>
+                            <Nav.Link href="/" onClick={logoutHandler} style={{color: "red"}}> LOGOUT </Nav.Link>
+                        </Nav>
+                        <Form inline>
+                            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={event => {setSearchTerm(event.target.value)}}/>
+                        </Form>
+                    </Navbar.Collapse>
+                </Navbar>
+                    <UserDetails users={currentUsers} searchTerm={searchTerm} />
                     <Pagination usersPerPage={usersPerPage} totalUsers={users.length} paginate={paginate}/>
                 </div>
             </>

@@ -1,11 +1,17 @@
 import React from 'react';
 
-const UserDetails = ({ users }) => {
+const UserDetails = ({ users, searchTerm }) => {
     
     return( 
         <ul className="list-group mb-4">
             {
-                users.map(user => (
+                users.filter((user) => {
+                    if(searchTerm === ""){
+                        return user
+                    } else if ( (user.firstname.toLowerCase().includes(searchTerm.toLowerCase())) || (user.lastname.toLowerCase().includes(searchTerm.toLowerCase())) || (user.age.toString().toLowerCase().includes(searchTerm.toLowerCase())) ){
+                        return user
+                    }
+                }).map(user => (
                     <li key={user.userid} className="list-group-item">
                         <span><b>Full Name: </b>{user.firstname} {user.lastname}</span>
                         <br></br>
